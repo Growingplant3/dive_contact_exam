@@ -1,0 +1,53 @@
+<% if @contact.errors.any? %>
+  <%= render 'errors' %>
+<% elsif flash[:notice] %>
+  <%= render 'post_success' %>
+<% end %>
+<%= form_with(model: @contact, local: true) do |f| %>
+  <h2>お問い合わせフォーム</h2>
+  <div class="contact-form card m-2 p-4" style="background-color: #66CC00; width: 45%;">
+    <p>
+      『<a href="#">当社の個人情報に関する取り扱いについて</a>』を必ずお読みください。
+    </p>
+    <table>
+      <tr>
+        <th>
+          <%= f.label :name %>
+        </th>
+        <td>
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= f.label :email %>
+        </th>
+        <td>
+          <%= f.email_field :email %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= f.label :content %>
+        </th>
+        <td>
+          <%= f.text_area :content, size: "100", maxlength: 140 %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= f.label :agree %>
+        </th>
+        <td>
+          <%= f.radio_button :agree, checked: true %>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
+          <%= f.submit "送信する" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>
